@@ -3,7 +3,7 @@
 ## AWS
 * @TheAifam5
 
-## GKE
+## GCP
 * @BlacCello
 * @christle
 * @MO2k4
