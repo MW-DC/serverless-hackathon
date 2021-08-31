@@ -11,5 +11,5 @@ As soon as participants have found each other, we start making appointments and 
 I'm sure, we can do something with the results. there are a few options 
 
 ## Preparation
-* we need access for AWS, Azure, GKE	
+* we need access for AWS, Azure, GCP	
 * Definition of requirements, e.g. 10 functions that should have an independent lifecycle, but can be controlled together etc.

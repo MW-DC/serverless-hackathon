@@ -1,12 +1,11 @@
 # Groups
 
 ## AWS
-* @TheAifam5
+@TheAifam5
 
-## GKE
-* @BlacCello
-* @christle
-* @MO2k4
+## GCP
+@BlacCello
+@christle
 
 ## Azure
-* Wladimir
+Wladimir
