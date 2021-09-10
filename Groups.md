@@ -3,6 +3,7 @@
 ## AWS
 * @TheAifam5
 * @thegreatdane6
+* @shadowmulder
 
 ## GCP
 * @BlacCello
