@@ -2,6 +2,7 @@
 
 ## AWS
 * @TheAifam5
+* @thegreatdane6
 
 ## GCP
 * @BlacCello
