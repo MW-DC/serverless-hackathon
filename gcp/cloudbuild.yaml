@@ -27,3 +27,16 @@ steps:
       - --allow-unauthenticated
     id: "deploying-a-serverless-function#2"
     dir: "gcp/dane"
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["deploying-a-serverless-function#1"]
+    args:
+      - functions
+      - deploy
+      - GoApi
+      - --runtime=go113
+      - --trigger-http
+      - --region=us-central1
+      - --memory=256MB
+      - --allow-unauthenticated
+    id: "deploying-a-serverless-function#3"
+    dir: "gcp/christle"
