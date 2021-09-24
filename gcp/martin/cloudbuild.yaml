@@ -1,0 +1,30 @@
+steps:
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
+    args:
+      - functions
+      - deploy
+      - martin-hello-world
+      - --runtime=dotnet3
+      - --trigger-http
+      - --region=europe-central2
+      - --memory=256MB
+      - --entry-point=HelloWorld.Function
+      - --allow-unauthenticated
+      - --no-promote
+    id: "publish-not-promoted-instance"
+    dir: "gcp/martin"
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
+    args:
+      - functions
+      - deploy
+      - martin-hello-world
+      - --runtime=dotnet3
+      - --trigger-http
+      - --region=europe-central2
+      - --memory=256MB
+      - --entry-point=HelloWorld.Function
+      - --allow-unauthenticated
+    id: "publish-instance"
+    dir: "gcp/martin"
