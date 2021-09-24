@@ -14,7 +14,7 @@ steps:
     id: "deploying-a-serverless-function#1"
     dir: "gcp/martin"
   - name: "gcr.io/cloud-builders/gcloud"
-    waitFor: ["-"]
+    waitFor: ["deploying-a-serverless-function#1"]
     args:
       - functions
       - deploy
