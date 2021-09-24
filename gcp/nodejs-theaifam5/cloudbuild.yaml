@@ -1,0 +1,30 @@
+steps:
+  # Install dependencies
+  - name: node
+    entrypoint: npm
+    args: ['install']
+  # Run unit tests
+  - name: node
+    entrypoint: npm
+    args: ['run', 'unit-test']
+  # Run integration tests
+  - name: node
+    entrypoint: npm
+    args: ['run', 'integration-test']
+  # Deploy function
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
+    args:
+      - functions
+      - deploy
+      - hello-theaifam5
+      - --runtime=nodejs14
+      - --trigger-http
+      - --region=europe-central2
+      - --memory=256MB      
+      - --allow-unauthenticated
+    id: "deploying-hello-theaifam5"
+  # Run system test
+  - name: node
+    entrypoint: npm
+    args: ['run', 'system-test']
