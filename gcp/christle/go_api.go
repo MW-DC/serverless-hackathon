@@ -1,5 +1,4 @@
-// Package helloworld provides a set of Cloud Functions samples.
-package helloworld
+package main
 
 import (
 	"fmt"
@@ -8,5 +7,9 @@ import (
 
 // HelloGet is an HTTP Cloud Function.
 func GoApi(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, from christle! With new Version")
+	fmt.Fprint(w, GetHello())
+}
+
+func GetHello() string {
+	return "Hello, from christle!"
 }
