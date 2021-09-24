@@ -3,17 +3,24 @@ steps:
   - name: node
     entrypoint: npm
     args: ['install']
+    id: 'install'
+    dir: 'gcp/nodejs-theaifam5'
   # Run unit tests
   - name: node
     entrypoint: npm
     args: ['run', 'unit-test']
+    id: 'utest'
+    dir: 'gcp/nodejs-theaifam5'
+    waitFor: ['install']
   # Run integration tests
   - name: node
     entrypoint: npm
     args: ['run', 'integration-test']
+    id: 'itest'
+    dir: 'gcp/nodejs-theaifam5'
+    waitFor: ['install']
   # Deploy function
-  - name: "gcr.io/cloud-builders/gcloud"
-    waitFor: ["-"]
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - functions
       - deploy
@@ -23,8 +30,12 @@ steps:
       - --region=europe-central2
       - --memory=256MB      
       - --allow-unauthenticated
-    id: "deploying-hello-theaifam5"
+    id: 'deploy'
+    dir: 'gcp/nodejs-theaifam5'
+    waitFor: ['utest', 'itest']
   # Run system test
   - name: node
     entrypoint: npm
     args: ['run', 'system-test']
+    dir: 'gcp/nodejs-theaifam5'
+    waitFor: ['deploy']
