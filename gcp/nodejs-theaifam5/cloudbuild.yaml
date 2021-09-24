@@ -1,6 +1,5 @@
-options:
-  env:
-    - 'REGION_ID=europe-central2'
+substitutions:
+  REGION_ID: 'europe-central2'
 steps:
   # Install dependencies
   - name: node
