@@ -1,0 +1,15 @@
+steps:
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
+    args:
+      - functions
+      - deploy
+      - martin-hello-world
+      - --runtime=dotnet3
+      - --trigger-http
+      - --region=europe-central2
+      - --memory=256MB
+      - --entry-point HelloWorld.Function
+      - --allow-unauthenticated
+    id: "deploying-a-serverless-function"
+    dir: "gcp/martin"
