@@ -1,3 +1,6 @@
+options:
+  env:
+    - 'REGION_ID=europe-central2'
 steps:
   # Install dependencies
   - name: node
@@ -27,7 +30,7 @@ steps:
       - hello-theaifam5
       - --runtime=nodejs14
       - --trigger-http
-      - --region=europe-central2
+      - --region=$REGION_ID
       - --memory=256MB      
       - --allow-unauthenticated
     id: 'deploy'
@@ -36,6 +39,8 @@ steps:
   # Run system test
   - name: node
     entrypoint: npm
+    env:
+      - 'BASE_URL=https://$REGION_ID-$PROJECT_ID.cloudfunctions.net/'
     args: ['run', 'system-test']
     dir: 'gcp/nodejs-theaifam5'
     waitFor: ['deploy']
