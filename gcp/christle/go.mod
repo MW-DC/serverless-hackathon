@@ -1,4 +1,4 @@
-module christle/api
+module christle.com/api
 
 go 1.17
 
