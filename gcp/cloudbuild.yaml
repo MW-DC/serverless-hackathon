@@ -27,8 +27,19 @@ steps:
       - --allow-unauthenticated
     id: "deploying-a-serverless-function#2"
     dir: "gcp/dane"
+  # Run tests and save to file
+  - name: golang
+    entrypoint: /bin/bash
+    id: "go-testing"
+    dir: "gcp/christle"
+    args: 
+      - -c
+      - |
+        go get -u github.com/jstemmer/go-junit-report
+        2>&1 go test -timeout 1m -v ./... | tee sponge.log
+        /go/bin/go-junit-report -set-exit-code < sponge.log > ${SHORT_SHA}_test_log.xml
   - name: "gcr.io/cloud-builders/gcloud"
-    waitFor: ["deploying-a-serverless-function#1"]
+    waitFor: ["go-testing"]
     args:
       - functions
       - deploy
