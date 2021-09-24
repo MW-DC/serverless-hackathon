@@ -41,5 +41,6 @@ steps:
     env:
       - 'BASE_URL=https://${_REGION_ID}-$PROJECT_ID.cloudfunctions.net/'
     args: ['run', 'system-test']
+    id: 'stest'
     dir: 'gcp/nodejs-theaifam5'
     waitFor: ['deploy']
