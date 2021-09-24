@@ -1,0 +1,27 @@
+steps:
+  - name: "gcr.io/cloud-builders/dotnet3"
+    waitFor: ["-"]
+    args:
+      - test
+    id: "unit-testing-a-serverless-function"
+    dir: "gcp/dane/unit.test"
+  - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["unit-testing-a-serverless-function"]
+    args:
+      - functions
+      - deploy
+      - danes-test-func
+      - --runtime=dotnet3
+      - --trigger-http
+      - --region=europe-central2
+      - --memory=256MB
+      - --entry-point=DanesTestFunc.Function
+      - --allow-unauthenticated
+    id: "deploying-a-serverless-function"
+    dir: "gcp/dane/danes-test-func"
+  - name: "gcr.io/cloud-builders/dotnet3"
+    waitFor: ["deploying-a-serverless-function"]
+    args:
+      - test
+    id: "integration-testing-a-serverless-function"
+    dir: "gcp/dane/integration.test"
