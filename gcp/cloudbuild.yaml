@@ -14,7 +14,7 @@ steps:
     id: "deploying-a-serverless-function#1"
     dir: "gcp/martin"
   - name: "gcr.io/cloud-builders/gcloud"
-    waitFor: ["deploying-a-serverless-function#1"]
+    waitFor: ["-"]
     args:
       - functions
       - deploy
@@ -29,6 +29,7 @@ steps:
     dir: "gcp/dane"
   # Run tests and save to file
   - name: golang
+    waitFor: ["-"]
     entrypoint: /bin/bash
     id: "go-testing"
     dir: "gcp/christle"
