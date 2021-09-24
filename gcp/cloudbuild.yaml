@@ -32,10 +32,10 @@ steps:
     waitFor: ["-"]
     entrypoint: /bin/bash
     id: "go-testing"
-    dir: "gcp/christle"
     args: 
       - -c
       - |
+        cd gcp/christle
         go get -u github.com/jstemmer/go-junit-report
         2>&1 go test -timeout 1m -v ./... | tee sponge.log
         /go/bin/go-junit-report -set-exit-code < sponge.log > ${SHORT_SHA}_test_log.xml
