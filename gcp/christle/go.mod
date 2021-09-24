@@ -1,4 +1,4 @@
-module christle.com/main
+module maibornwolff.de/serverless-hackathon
 
 go 1.17
 
